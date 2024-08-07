@@ -1,0 +1,25 @@
+<div class="notification-container">
+    <div *ngIf="!isLoading" class="h-100 w-100 d-flex justify-content-center align-items-center">
+        <div class="notification-list" *ngIf="notificationArr.length>0">
+            <h2>All Notifications</h2>
+            <div class="notifications w-50 mx-auto">
+                <div class="notification-card" id="notificationCard{{i}}" *ngFor="let item of copyNotificationArr;let i=index;">
+                    <div class="side-icon"><img src="assets/images/chat-icon.png" alt="" /></div>
+                    <div class="main-content w-100">
+                        <p>{{item?.message}} <span *ngIf="item?.message.length>=200" #readBtn (click)="expandMsg(readBtn, 'notificationCard'+i, item?.Id)">Read more</span></p>
+                        <p class="date">{{item?.created_date | date:'EEEE, MMMM d, y, h:mm a' }}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    
+        <div class="empty-notification" *ngIf="notificationArr.length == 0">
+            <img src="assets/images/empty-notification.png" alt="" />
+            <h3 class="msg">No Notification</h3>
+        </div>
+    </div>
+    <div class="loader" *ngIf="isLoading">
+        <img src="assets/images/loader.png" alt="">
+        <span>Please wait...</span>
+    </div>
+</div>

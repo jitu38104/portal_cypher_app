@@ -1,0 +1,35 @@
+div.graph-table-container{  
+    width: 100%;
+    border-radius: 10px;
+    background-color: white;
+    box-shadow: rgb(0 0 0 / 5%) -2px 2px 5px;
+}
+
+div.graph-table-container table{
+    width: 100%;
+    height: 100%;
+}
+
+div.graph-table-container table thead{
+    font-size: 16px;
+    font-family: 'Roboto';
+    font-weight: 400;
+    letter-spacing: 0.5px;
+}
+div.graph-table-container table thead th{padding: 15px 0;}
+
+div.graph-table-container table thead,
+div.graph-table-container table thead{
+    text-align: center;
+    border-bottom: 1px solid #c2c2c2;
+}
+div.graph-table-container table tbody td{
+    text-align: center;
+    border-bottom: 1px solid #e7e7e7;
+    font-size: 17px;
+    font-weight: 500;
+    font-family: 'Roboto';
+}
+div.graph-table-container table tbody td img{
+    height: 60px;
+}

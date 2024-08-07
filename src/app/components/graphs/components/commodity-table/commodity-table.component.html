@@ -1,0 +1,23 @@
+<div class="graph-table-container">
+    <table>
+        <thead>
+            <th *ngFor="let head of tableHeads;">{{head | titlecase}}</th>
+        </thead>
+        
+        <tbody>
+            <tr *ngFor="let item of [1,2,3,2,1,2,3,4,3,2];let i=index;">
+                <td style="width:5%;"><img src="assets/images/premium.png" alt=""></td>
+                <td style="width:15%;font-weight:400;">Chemical & Pharma</td>
+                <td style="width:13%;">
+                    <app-table-card-chart [chartId]="i" [chartOption]="tableDataset"></app-table-card-chart>
+                </td>
+                <td>&darr; $ 1,234</td>
+                <td>&uarr; $ 5,678</td>
+                <td>&darr; $ 9,101</td>
+                <td>&uarr; $ 1,121</td>
+                <td>2.34 Mn USD</td>
+                <td>78.23%</td>
+            </tr>
+        </tbody>
+    </table>
+</div>

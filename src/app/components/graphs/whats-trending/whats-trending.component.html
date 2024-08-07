@@ -1,0 +1,107 @@
+<div class="navigation-container w-100" [ngSwitch]="currentPage" [ngStyle]="{'height': isAnalysisTabActive ? containerHeight[0] : containerHeight[1]}">
+    <!--  -->
+    <span *ngSwitchCase="'companyProfile'"><app-company-profile class="position-relative" currentAnalysis="company"></app-company-profile></span>
+    <span *ngSwitchCase="'hsCodeAnalysis'"><app-all-analysis currentAnalysis="hs code"></app-all-analysis></span>
+    <span *ngSwitchCase="'countryAnalysis'"><app-all-analysis currentAnalysis="country"></app-all-analysis></span>
+    <span *ngSwitchCase="'timeAnalysis'"><app-all-analysis currentAnalysis="time"></app-all-analysis></span>
+    <span *ngSwitchCase="'exporterAnalysis'"><app-all-analysis currentAnalysis="supplier"></app-all-analysis></span>
+    <span *ngSwitchCase="'importerAnalysis'"><app-all-analysis currentAnalysis="buyer"></app-all-analysis></span>
+    <div class="h-100 w-100" *ngSwitchCase="'customizeAnalysis'"><app-custom-analysis currentAnalysis="custom" class="d-block position-relative h-100"></app-custom-analysis></div>
+
+    <div class="whats-trending-container" *ngSwitchDefault>
+        <!-- <app-navbar></app-navbar> -->
+        <section class="top-container">
+            <div class="left-container">
+                <div class="upper-card-charts">
+                    <app-card-chart radioId="exportBullet" cardTypeName="export rate" [currentPercent]="exportValue" performPercent="-28.12" [chartOption]="smChartOptions[0]"></app-card-chart>
+                    <app-card-chart radioId="importBullet" cardTypeName="import rate" [currentPercent]="importValue" performPercent="2.12" [chartOption]="smChartOptions[1]"></app-card-chart>
+                    <app-card-chart cardTypeName="total value" [currentPercent]="totalValue" performPercent="39.15" [chartOption]="smChartOptions[2]"></app-card-chart>
+                </div>
+                <div class="below-card-charts">
+                    <app-card-md-chart [chartOption]="mdChartOptions[0]" type="radar"></app-card-md-chart>
+                    <app-card-md-chart [chartOption]="mdChartOptions[3]" type="line"></app-card-md-chart>
+                </div>
+            </div>
+            <div class="right-container">
+                <app-card-md-chart [chartOption]="mdChartOptions[1]" type="pie"></app-card-md-chart>
+                <app-card-md-chart [chartOption]="mdChartOptions[2]" type="bar"></app-card-md-chart>
+            </div>
+        </section>
+    
+        <section class="mid-container"  *ngIf="false">
+            <div class="table-container">
+                <app-commodity-table></app-commodity-table>
+            </div>
+        </section>
+    
+    
+        <!-- bottom country map with testimonials -->
+        <section class="bottom-container" *ngIf="false">
+            <div class="bottom-left">
+                <div class="country-chart">
+                    <div class="header">
+                        <h1>Country Stats <span class="sub-head">Sub heading</span></h1>
+                        <span class="right-options">
+                            <img src="assets/images/down-left-arrow.png" alt="">
+                            <img src="assets/images/maximize-box.png" alt="">
+                        </span>
+                    </div>
+                    <div class="country-map">
+                        <div class="map">
+                            <countries-map 
+                                id="worldMap1"
+                                countryLabel="india"
+                                valueLabel="IND"
+                                (chartSelect)="onCountrySelect($event)"
+                                [data]="mapData" 
+                                noDataColor="#eaecec"
+                                minColor="orange"
+                                maxColor="orange">
+                            </countries-map>
+                        </div>
+                    </div>
+                </div>
+                <div class="chart-table">
+                    <table>
+                        <thead><th *ngFor="let head of tableHeads;">{{head | titlecase}}</th></thead>
+                        <tbody>
+                            <tr *ngFor="let item of [1,2,3,4,4];">
+                                <td>Canada</td>
+                                <td>55,555</td>
+                                <td>210</td>
+                                <td>2.46%</td>
+                                <td>0.26%</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+    
+            <div class="bottom-right">
+                <div class="testimonial-container">
+                    <div class="testimonial-list">
+                        <div class="testimonial-card" *ngFor="let item of [1,2,3,4]">
+                            <p>Cypher is a revolutionary tool that helped our company more than its worth. We've been using this for years now and are more than satisfied with its performance.</p>
+                            
+                            <div class="user-info">
+                                <span class="name-logo">ZC</span>
+                                <h4>Zuck Chan <span>Design Lead, Hencework</span></h4>
+                                <span class="rating">
+                                    <img src="assets/images/{{item}}-rate.png" *ngFor="let item of ratingArr" alt="">
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="recent-activity">
+                    <div class="top-head">
+                        <h4>Recent Activity</h4>
+                        <img src="assets/images/dots.png" alt="">
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+</div>
+
+

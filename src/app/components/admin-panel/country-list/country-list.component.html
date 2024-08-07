@@ -1,0 +1,44 @@
+<div class="country-modal">
+  <div class="modal-head d-flex justify-content-between align-items-center pe-3">
+    <h5 class="text-center w-100 mb-0">Select Country </h5>
+    <img src="assets/images/cross.png" (click)="activeModal.dismiss('Cross click')" alt="" />
+  </div>
+
+  <div class="tabs d-flex w-100" *ngIf="true">
+    <div class="{{item?.key==lastTabTagId && 'active'}} tab h-100 d-flex justify-content-center align-items-center" (click)="onClickTab(item?.key)" id="{{item?.key}}" *ngFor="let item of tabs">{{item?.tabName}}</div>
+  </div>
+
+  <div class="modal-body">
+    <div class="d-flex align-items-center justify-content-center h-100 w-100" *ngIf="availableCoutriesTypes[lastTabTagId].length==0">
+      <div class="child">Coming Soon!</div>
+    </div>
+
+    <table *ngIf="availableCoutriesTypes[lastTabTagId].length>0">
+      <thead>
+        <tr><td style="padding: 0 5px;padding-top: 5px;" colspan="6">
+          <input type="text" placeholder="search here..." (keyup)="onSearch($event)" />
+        </td></tr>
+        <th *ngFor="let head of countryHeads;let i=index;" [style]="{'width': i==0||i==5 ? '15%' : 'auto'}" class="{{i==0 ? 'text-center': ''}}">
+          <span class="head-name">
+            <span *ngIf="head != 'sample'">{{head | titlecase}}</span>
+          </span>
+        </th>
+      </thead>
+      <tbody *ngIf="copiedCountryList.length>0"><tr *ngFor="let item of copiedCountryList;" [hidden]="isIndiaCountry(item)">
+        <td class="country-name">
+          {{getProperName(item?.CountryName) | uppercase}}
+        </td>
+        <td>{{item?.StartDate | date:'MMM-yy'}} &nbsp;&nbsp;&nbsp;&nbsp; {{item?.LatestDate| date:'MMM-yy'}}</td>
+        <td>{{item?.Direction | titlecase}}</td>
+        <td>100%</td>
+        <td class="text-start">Date, Importer, Supplier, Hs Code, Product Description, Quantity, Unit, Value, Trade Partner Countries, Ports and many more</td>
+        <td>
+          <button *ngIf="isAvailbale(item?.CountryName)" (mouseover)="onHover($event, true)" (mouseout)="onHover($event, false)" class="cypher-btn gray-bgColor w-50" (click)="onSelectCountry(item, item?.Direction)">Select</button>
+          <span class="padlock"><img class="padlock-img" *ngIf="!isAvailbale(item?.CountryName)" src="assets/images/padlock.png" alt=""/></span>
+        </td>
+      </tr></tbody>
+    </table>
+    <div class="loader" style="height:80%" *ngIf="!hasDataReceived && copiedCountryList.length==0"><img src="assets/images/loader.png" alt=""></div> 
+  </div>
+</div>
+

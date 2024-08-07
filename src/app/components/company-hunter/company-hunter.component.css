@@ -1,0 +1,186 @@
+div.company-hunter-container{position: relative;height: 90vh;}
+div.company-hunter-container div.score-board{
+    display: flex;
+    align-items: center;
+    width: 15%;
+    position: absolute;
+    right: 3%;
+    top: 3%;
+}
+div.company-hunter-container div.score-board div.points{
+    font-size: 14px;
+    letter-spacing: 0.5px;
+    font-weight: 500;
+    font-family: 'Roboto';
+    color: white;
+    padding: 8px 25px;
+    border-radius: 50%;
+}
+div.company-hunter-container div.score-board div.points.red{background-color: red;}
+div.company-hunter-container div.score-board div.points.orange{background-color: orange;}
+div.company-hunter-container div.score-board div.points.green{background-color: #4cbfa6;}
+div.company-hunter-container div.score-board i{
+    font-size: 22px;
+    color: green;
+    cursor: pointer;
+    transition: all 0.4s ease;
+}
+div.company-hunter-container div.score-board i:hover{scale: 1.25;}
+
+div.middle-box{}
+
+div.middle-box div.company-search-box{
+    background-color: #f4f1e3;
+    padding: 2.5rem 3rem;
+    border-radius: 10px;
+    margin-top: 3rem;
+    margin-bottom: 3.5rem;
+    box-shadow: 0px 5px 15px 0.5px #00000047;
+}
+div.middle-box div.company-search-box h3{
+    font-size: 23px;
+    font-weight: 400;
+    letter-spacing: -0.25px;
+    margin-bottom: 1.25rem;
+}
+
+div.middle-box div.company-search-box div.input-fields{
+    width: 80%;
+    height: 2.5rem;
+    margin: auto;
+    margin-bottom: 1.5rem;
+}
+
+div.middle-box div.company-search-box div.input-fields div.search-field input{
+    outline: none;
+    padding: 0 10px;
+    border-radius: 5px;
+    border: 1px solid #c2c2c2;
+}
+div.middle-box div.company-search-box div.input-fields div.search-field ul{
+    background-color: white;
+    width: 100%;
+    padding: 0;
+    border: 1px solid #c2c2c2;
+    box-shadow: 0px 5px 5px 0px #00000021;
+    margin-top: 2px;
+    outline: none;
+    z-index: 99;
+}
+div.middle-box div.company-search-box div.input-fields div.search-field ul li{
+    list-style-type: none;
+    padding: 5px 15px;
+    border-bottom: 1px dotted #c2c2c2;
+    font-size: 17px;
+    cursor: pointer;
+    letter-spacing: 0.25px;
+}
+div.middle-box div.company-search-box div.input-fields div.search-field ul li:hover{background-color: whitesmoke;}
+div.middle-box div.company-search-box div.input-fields div.search-field ul li:last-child{border-bottom: 0;}
+
+div.middle-box div.company-search-box div.bttn button{
+    width: 30%;
+    border-radius: 5px;
+    padding: 7px 0;
+}
+
+.blurred{filter: blur(10px);}
+div.middle-box div.company-search-details{
+    min-height: 35vh;
+    max-height: 50vh;
+    overflow: auto;
+    background-color: #f4f1e3;
+    border-radius: 10px;
+    padding: 1.75rem 2.5rem;
+    box-shadow: 0px 5px 15px 0.5px #00000047;
+    position: relative;
+}
+div.middle-box div.company-search-details i.fa-heart,
+div.middle-box div.company-search-details i.lock-icon{
+    cursor: pointer;
+    position: absolute;
+    right: 5%;
+    z-index: 9;
+}
+div.middle-box div.company-search-details i.fa-heart{right: 7%;}
+
+div.middle-box div.company-search-details div.load-box{height: 29vh;}
+div.middle-box div.company-search-details div.load-box div.loader img{height: 30px;}
+div.middle-box div.company-search-details div.load-box div.loader span{font-size: 12px;margin-top: 10px;}
+div.middle-box div.company-search-details div.load-box div.loader div.bottom-btn button{
+    text-transform: capitalize;
+    margin-top: 1.5rem;
+    padding: 5px 25px;
+    border-radius: 5px;
+    font-size: 15px;
+}
+div.middle-box div.company-search-details div.load-box div.loader div.bottom-btn span.req-msg{
+    font-size: 15px;
+    color: green;
+    letter-spacing: 0.35px;
+}
+
+div.middle-box div.company-search-details h2{
+    font-weight: 400;
+    font-size: 35px;
+    letter-spacing: 0.5px;
+    margin-bottom: 2rem;
+}
+
+div.middle-box div.company-search-details div.basic-data div.data i{
+    font-size: 18px;
+    width: 5%;
+}
+div.middle-box div.company-search-details div.basic-data div.data p{
+    font-size: 17px;
+    font-weight: 500;
+}
+
+
+div.company-hunter-container div.favorites-list-container {
+    width: 93%;
+    height: 88vh;
+}
+div.company-hunter-container div.favorites-list-container div.table-heading{
+    position: relative;
+    margin-bottom: 1rem;
+}
+div.company-hunter-container div.favorites-list-container div.table-heading span{
+    font-size: 30px;
+    font-weight: 700;
+    color: #545556;
+}
+div.company-hunter-container div.favorites-list-container div.table-heading i{
+    position: absolute;
+    top: 35%;
+    cursor: pointer;
+    font-size: 20px;
+}
+div.company-hunter-container div.favorites-list-container div.table-heading i.fa-download{right: 0%;}
+div.company-hunter-container div.favorites-list-container div.table-heading i.fa-arrow-left{left: 1%;}
+div.company-hunter-container div.favorites-list-container div.table-box{
+    overflow: auto;
+    max-height: 90%;
+}
+div.company-hunter-container div.favorites-list-container div.table-box table{
+    border-collapse: collapse;
+}
+div.company-hunter-container div.favorites-list-container div.table-box table th,
+div.company-hunter-container div.favorites-list-container div.table-box table td{
+    border: 1px solid #c2c2c2;
+    padding: 2px 10px;
+    white-space: nowrap;
+}
+div.company-hunter-container div.favorites-list-container div.table-box table tr:hover{background-color: #ffeb3b66;}
+div.company-hunter-container div.favorites-list-container div.table-box table thead{
+    background-color: #4cbfa6;
+    color: white;
+    text-align: center;
+}
+div.company-hunter-container div.favorites-list-container div.empty-msg{height: 85%;}
+div.company-hunter-container div.favorites-list-container div.empty-msg span{
+    font-weight: 600;
+    font-family: 'Roboto';
+    letter-spacing: 0.35px;
+}
+/* .invisible{visibility: hidden;} */

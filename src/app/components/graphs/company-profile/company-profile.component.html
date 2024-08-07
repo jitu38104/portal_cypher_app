@@ -1,0 +1,163 @@
+<div class="profile-container position-relative {{(isTableShow || isLoading) && 'overflow-hidden'}}">    
+    <div class="company-profile-container w-100 pb-5">
+        <div class="loader" *ngIf="isLoading">
+            <img src="assets/images/loader.png" alt="">
+            <span>Profile is loading, Please wait...</span>
+        </div>
+
+        <!-- <div class="toggler d-flex align-items-center mb-3 position-absolute d-none">
+            <div class="me-2 lbel">Export</div>
+            <label class="switch">
+                <input type="checkbox" [checked]="currentTab=='import'" (click)="switchTab($event)"/>
+                <span class="slider"></span>
+            </label>
+            <div class="ms-2 lbel">Import</div>
+        </div> -->
+        
+        <div class="company-headbar position-relative py-4">
+            <div class="switch-box position-absolute">
+                <div class="toggle">
+                    <input type="checkbox" [checked]="currentTab=='import'" (click)="switchTab($event)" />
+                    <label></label>
+                </div>
+            </div>
+
+            <h2 class="text-center m-0">Company Profile</h2>
+
+            <!-- <div class="company-title d-flex align-items-center justify-content-center mb-3 d-none">
+                <div class="company-avatar me-3">
+                    <img class="w-100 h-100" src="assets/images/building.png" alt="" />
+                </div>
+                <div class="company-name">{{comapnyName}} ({{companyData?.ValueInUSD}} $)</div>
+            </div> -->
+        </div>
+
+        <div class="no-data d-flex align-items-center pt-3 pb-2 mx-auto {{companyAllShipments.length>0?'d-none':''}}">
+            <i class="fa-solid fa-circle-exclamation fa-bounce"></i>
+            <p class="mb-0">No Data Found!</p>
+        </div>
+
+        <div class="details-box px-3 ps-5 pb-5 d-flex align-items-start mb-5 {{companyAllShipments.length==0?'hide-data':''}}">
+            <div class="left-container me-4">
+                <div class="company-title d-flex align-items-center justify-content-start mb-3">
+                    <div class="me-3"><div class="company-avatar">
+                        <img class="w-100 h-100" src="assets/images/building.png" alt="" />
+                    </div></div>
+                    <div class="company-name">{{comapnyName}} <span>({{companyData?.ValueInUSD}} $)</span></div>
+                </div>
+
+                <div class="company-info">
+                    <div class="company-data d-flex mb-3" *ngFor="let item of companyInfoPoints;">
+                        <i class="fa-solid fa-{{item?.icon}} me-3"></i>
+                        <p class="mb-0">{{item?.data}}</p>
+                    </div>
+
+                    <div class="social-links" *ngIf="false">
+                        <div class="link">
+                            <i class="fa-brands fa-facebook"></i>
+                            <a target="_blank" href="https://www.linkedin.com/developers/apps/210113843/settings">{{getEllipsedLink('https://www.linkedin.com/developers/apps/210113843/settings')}}</a>
+                        </div>
+                        <div class="link">
+                            <i class="fa-brands fa-x-twitter"></i>
+                            <a target="_blank" href="https://www.linkedin.com/developers/apps/210113843/settings">{{getEllipsedLink('https://www.linkedin.com/developers/apps/210113843/settings')}}</a>
+                        </div>
+                        <div class="link">
+                            <i class="fa-brands fa-instagram"></i>
+                            <a target="_blank" href="https://www.linkedin.com/developers/apps/210113843/settings">{{getEllipsedLink('https://www.linkedin.com/developers/apps/210113843/settings')}}</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="right-container">
+                <div class="top-counts d-flex align-items-start">
+                    <div class="side-intro w-25 me-4 d-none">
+                        <h3>Company Profile</h3>
+                        <p>Following is the overall Statistics of the company that would help you to analyse better!</p>
+                    </div>
+
+                    <div class="count-container row w-100">
+                        <div (click)="showShipmentTable(item)" class="count-box col-3 d-flex flex-column align-items-center" *ngFor="let item of subHeads2;">
+                            <div class="count-value">{{getProfileValue(item)}}</div>
+                            <div class="count-type">{{item=='establishedyear' ? 'Est. Year': item|titlecase}}</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="below-map w-100" id="map-container">
+                    <!-- <img class="w-100 h-100" src="assets/images/worldmap.png" alt="" /> -->
+                </div>
+            </div>
+        </div>
+
+        <div *ngIf="false" class="grid-box-container mx-auto {{companyAllShipments.length==0?'hide-data':''}}">
+            <div><table class="w-100">
+                <thead class="sticky-top">
+                    <th>S.no.</th>
+                    <th>Contact Person Name</th>
+                    <th>Link</th>                    
+                </thead>
+                <tbody>
+                    <tr *ngFor="let item of tempLinkedInList;let i=index">
+                        <td>{{i+1}}</td>
+                        <td>{{item.name | titlecase}}</td>
+                        <td><a target="_blank" href="{{item.link}}">{{ getEllipsedLink(item.link)}}</a></td>
+                    </tr>
+                </tbody>
+            </table></div>            
+        </div>
+    </div>    
+</div>
+
+
+
+<div class="modal-popup position-absolute w-100 h-100 d-flex align-items-center justify-content-center {{isTableShow && 'active'}}">
+    <div class="card">
+        <div class="card-header d-flex justify-content-between align-items-center px-4">             
+            <h5 class="w-100 text-center">{{shipmentTableName}}</h5> 
+            <i class="fa-solid fa-xmark" (click)="closePivotTable()"></i>
+        </div>
+        <div class="card-body h-100">
+            <div class="btns mx-auto d-flex align-items-center justify-content-between {{isAllShipmentShow && 'd-none'}}">
+                <i title="{{!isPivotExpand ? 'Expand':'Collapse'}} All" class="fa-solid {{!isPivotExpand ?'fa-square-minus':'fa-square-plus'}}" (click)="toggleDetailOpen()"></i>
+                <i title="{{!isPivotSorted ? 'In':'De'}}creasing Order" class="fa-solid {{!isPivotSorted ? 'fa-arrow-down-wide-short':'fa-arrow-up-short-wide'}}" (click)="sortDataList()"></i>
+            </div>
+
+            <div class="w-100 overflow-auto">
+                <div class="loader" *ngIf="pivotLoading">
+                    <img src="assets/images/loader.png" alt="">
+                    <span>Pivot is being created, Please wait...</span>
+                </div>
+
+                <details class="level1 {{isAllShipmentShow && 'd-none'}}" *ngFor="let key of pivotTableKeys">
+                    <summary class="level1-sum">{{key | uppercase}} <span class="float-right">({{currencyConvertor(pivotTable[key]['value'])}})</span></summary>
+                    
+                    <details class="level2 {{item.key=='value' && 'd-none'}}" *ngFor="let item of pivotTable[key] | keyvalue">
+                        <summary class="level2-sum">{{item.key}} <span class="float-right">({{currencyConvertor(item.value['value'])}})</span></summary>
+                    
+                        <details class="level3 {{item2.key=='value' && 'd-none'}}" *ngFor="let item2 of item.value | keyvalue">
+                            <summary class="level3-sum">{{item2.key}} <span class="float-right">({{currencyConvertor(item2.value)}})</span></summary>
+                        </details>
+                    </details>
+                </details>
+
+
+                <cdk-virtual-scroll-viewport *ngIf="isAllShipmentShow" [itemSize]="25" class="CustomVirtualScrollStrategy h-100">
+                <table class="w-100 h-100">
+                    <thead>
+                        <th>S.no</th>
+                        <th *ngFor="let head of currentTableHeads">{{getColName(head) | titlecase}}</th>
+                    </thead>
+                    <tbody>
+                        <tr *cdkVirtualFor="let item of currentTableData;let i=index">
+                            <td>{{i+1}}</td>
+                            <td *ngFor="let head of currentTableHeads" class="w-100 h-100">{{item[head]}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+                </cdk-virtual-scroll-viewport>
+            </div>
+        </div>
+    </div>
+</div>
+  
